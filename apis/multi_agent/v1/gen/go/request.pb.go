@@ -7608,6 +7608,7 @@ type Request_Settings_ApiKeys struct {
 	xxx_hidden_AllowUseOfWarpCredits  bool                                             `protobuf:"varint,5,opt,name=allow_use_of_warp_credits,json=allowUseOfWarpCredits"`
 	xxx_hidden_AwsCredentials         *Request_Settings_ApiKeys_AWSCredentials         `protobuf:"bytes,6,opt,name=aws_credentials,json=awsCredentials"`
 	xxx_hidden_GoogleCloudCredentials *Request_Settings_ApiKeys_GoogleCloudCredentials `protobuf:"bytes,7,opt,name=google_cloud_credentials,json=googleCloudCredentials"`
+	xxx_hidden_GrokOauthAccessToken   *string                                          `protobuf:"bytes,8,opt,name=grok_oauth_access_token,json=grokOauthAccessToken"`
 	XXX_raceDetectHookData            protoimpl.RaceDetectHookData
 	XXX_presence                      [1]uint32
 	unknownFields                     protoimpl.UnknownFields
@@ -7700,29 +7701,39 @@ func (x *Request_Settings_ApiKeys) GetGoogleCloudCredentials() *Request_Settings
 	return nil
 }
 
+func (x *Request_Settings_ApiKeys) GetGrokOauthAccessToken() string {
+	if x != nil {
+		if x.xxx_hidden_GrokOauthAccessToken != nil {
+			return *x.xxx_hidden_GrokOauthAccessToken
+		}
+		return ""
+	}
+	return ""
+}
+
 func (x *Request_Settings_ApiKeys) SetAnthropic(v string) {
 	x.xxx_hidden_Anthropic = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 8)
 }
 
 func (x *Request_Settings_ApiKeys) SetOpenai(v string) {
 	x.xxx_hidden_Openai = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 8)
 }
 
 func (x *Request_Settings_ApiKeys) SetGoogle(v string) {
 	x.xxx_hidden_Google = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 8)
 }
 
 func (x *Request_Settings_ApiKeys) SetOpenRouter(v string) {
 	x.xxx_hidden_OpenRouter = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 8)
 }
 
 func (x *Request_Settings_ApiKeys) SetAllowUseOfWarpCredits(v bool) {
 	x.xxx_hidden_AllowUseOfWarpCredits = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 7)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 8)
 }
 
 func (x *Request_Settings_ApiKeys) SetAwsCredentials(v *Request_Settings_ApiKeys_AWSCredentials) {
@@ -7731,6 +7742,11 @@ func (x *Request_Settings_ApiKeys) SetAwsCredentials(v *Request_Settings_ApiKeys
 
 func (x *Request_Settings_ApiKeys) SetGoogleCloudCredentials(v *Request_Settings_ApiKeys_GoogleCloudCredentials) {
 	x.xxx_hidden_GoogleCloudCredentials = v
+}
+
+func (x *Request_Settings_ApiKeys) SetGrokOauthAccessToken(v string) {
+	x.xxx_hidden_GrokOauthAccessToken = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 8)
 }
 
 func (x *Request_Settings_ApiKeys) HasAnthropic() bool {
@@ -7782,6 +7798,13 @@ func (x *Request_Settings_ApiKeys) HasGoogleCloudCredentials() bool {
 	return x.xxx_hidden_GoogleCloudCredentials != nil
 }
 
+func (x *Request_Settings_ApiKeys) HasGrokOauthAccessToken() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
+}
+
 func (x *Request_Settings_ApiKeys) ClearAnthropic() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Anthropic = nil
@@ -7815,6 +7838,11 @@ func (x *Request_Settings_ApiKeys) ClearGoogleCloudCredentials() {
 	x.xxx_hidden_GoogleCloudCredentials = nil
 }
 
+func (x *Request_Settings_ApiKeys) ClearGrokOauthAccessToken() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
+	x.xxx_hidden_GrokOauthAccessToken = nil
+}
+
 type Request_Settings_ApiKeys_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
@@ -7830,6 +7858,10 @@ type Request_Settings_ApiKeys_builder struct {
 	AwsCredentials *Request_Settings_ApiKeys_AWSCredentials
 	// Optional GCP Credentials (for Gemini Enterprise Agent Platform)
 	GoogleCloudCredentials *Request_Settings_ApiKeys_GoogleCloudCredentials
+	// Optional xAI/Grok OAuth access token from a connected Grok (SuperGrok) subscription.
+	// When set, the server's xAI harness authenticates with this bearer token instead of
+	// Warp's org-wide xAI API key.
+	GrokOauthAccessToken *string
 }
 
 func (b0 Request_Settings_ApiKeys_builder) Build() *Request_Settings_ApiKeys {
@@ -7837,27 +7869,31 @@ func (b0 Request_Settings_ApiKeys_builder) Build() *Request_Settings_ApiKeys {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Anthropic != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 8)
 		x.xxx_hidden_Anthropic = b.Anthropic
 	}
 	if b.Openai != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 8)
 		x.xxx_hidden_Openai = b.Openai
 	}
 	if b.Google != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 8)
 		x.xxx_hidden_Google = b.Google
 	}
 	if b.OpenRouter != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 8)
 		x.xxx_hidden_OpenRouter = b.OpenRouter
 	}
 	if b.AllowUseOfWarpCredits != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 7)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 8)
 		x.xxx_hidden_AllowUseOfWarpCredits = *b.AllowUseOfWarpCredits
 	}
 	x.xxx_hidden_AwsCredentials = b.AwsCredentials
 	x.xxx_hidden_GoogleCloudCredentials = b.GoogleCloudCredentials
+	if b.GrokOauthAccessToken != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 8)
+		x.xxx_hidden_GrokOauthAccessToken = b.GrokOauthAccessToken
+	}
 	return m0
 }
 
@@ -8920,7 +8956,7 @@ var File_request_proto protoreflect.FileDescriptor
 const file_request_proto_rawDesc = "" +
 	"\n" +
 	"\rrequest.proto\x12\x13warp.multi_agent.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a!google/protobuf/go_features.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x13input_context.proto\x1a\x10attachment.proto\x1a\x12file_content.proto\x1a\roptions.proto\x1a\x11suggestions.proto\x1a\n" +
-	"task.proto\x1a\vskill.proto\x1a\x13orchestration.proto\"\x9aq\n" +
+	"task.proto\x1a\vskill.proto\x1a\x13orchestration.proto\"\xd7q\n" +
 	"\aRequest\x12K\n" +
 	"\ftask_context\x18\x01 \x01(\v2(.warp.multi_agent.v1.Request.TaskContextR\vtaskContext\x128\n" +
 	"\x05input\x18\x02 \x01(\v2\".warp.multi_agent.v1.Request.InputR\x05input\x12A\n" +
@@ -9105,7 +9141,7 @@ const file_request_proto_rawDesc = "" +
 	"agent_name\x18\x06 \x01(\tB\x04\x80\xb5\x18\x01R\tagentName\x1aR\n" +
 	"\fLoggingEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12,\n" +
-	"\x05value\x18\x02 \x01(\v2\x16.google.protobuf.ValueR\x05value:\x028\x01\x1a\xa3\x19\n" +
+	"\x05value\x18\x02 \x01(\v2\x16.google.protobuf.ValueR\x05value:\x028\x01\x1a\xe0\x19\n" +
 	"\bSettings\x12T\n" +
 	"\fmodel_config\x18\x01 \x01(\v21.warp.multi_agent.v1.Request.Settings.ModelConfigR\vmodelConfig\x12#\n" +
 	"\rrules_enabled\x18\x02 \x01(\bR\frulesEnabled\x12A\n" +
@@ -9143,7 +9179,7 @@ const file_request_proto_rawDesc = "" +
 	"\x06coding\x18\x03 \x01(\tR\x06coding\x12\x1b\n" +
 	"\tcli_agent\x18\x04 \x01(\tR\bcliAgent\x12,\n" +
 	"\x12computer_use_agent\x18\x05 \x01(\tR\x10computerUseAgent\x12D\n" +
-	"\x1fbase_model_context_window_limit\x18\x06 \x01(\rR\x1bbaseModelContextWindowLimit\x1a\x94\x05\n" +
+	"\x1fbase_model_context_window_limit\x18\x06 \x01(\rR\x1bbaseModelContextWindowLimit\x1a\xd1\x05\n" +
 	"\aApiKeys\x12\"\n" +
 	"\tanthropic\x18\x01 \x01(\tB\x04\x80\xb5\x18\x01R\tanthropic\x12\x1c\n" +
 	"\x06openai\x18\x02 \x01(\tB\x04\x80\xb5\x18\x01R\x06openai\x12\x1c\n" +
@@ -9152,7 +9188,8 @@ const file_request_proto_rawDesc = "" +
 	"openRouter\x128\n" +
 	"\x19allow_use_of_warp_credits\x18\x05 \x01(\bR\x15allowUseOfWarpCredits\x12e\n" +
 	"\x0faws_credentials\x18\x06 \x01(\v2<.warp.multi_agent.v1.Request.Settings.ApiKeys.AWSCredentialsR\x0eawsCredentials\x12~\n" +
-	"\x18google_cloud_credentials\x18\a \x01(\v2D.warp.multi_agent.v1.Request.Settings.ApiKeys.GoogleCloudCredentialsR\x16googleCloudCredentials\x1a\x9d\x01\n" +
+	"\x18google_cloud_credentials\x18\a \x01(\v2D.warp.multi_agent.v1.Request.Settings.ApiKeys.GoogleCloudCredentialsR\x16googleCloudCredentials\x12;\n" +
+	"\x17grok_oauth_access_token\x18\b \x01(\tB\x04\x80\xb5\x18\x01R\x14grokOauthAccessToken\x1a\x9d\x01\n" +
 	"\x0eAWSCredentials\x12#\n" +
 	"\n" +
 	"access_key\x18\x01 \x01(\tB\x04\x80\xb5\x18\x01R\taccessKey\x12#\n" +
