@@ -119,6 +119,12 @@ message Request {
           // Plan-card edits to plan orchestration config. Sent on the next
           // outbound request after the user edits the plan card.
           OrchestrationConfigUpdate orchestration_config_update = 7;
+
+          // Marker signaling that a cloud conversation has been continued
+          // locally. When present, it is always the first entry in `inputs`,
+          // preceding the other user inputs sent with the handoff (e.g. the
+          // first local user query).
+          ConversationHandoff conversation_handoff = 8;
         }
       }
 
@@ -143,6 +149,9 @@ message Request {
       message PassiveSuggestionResultInput {
         PassiveSuggestionResultType result = 1;
       }
+
+      // Signals that a cloud conversation has been continued locally.
+      message ConversationHandoff {}
     }
 
     // Tool call result
