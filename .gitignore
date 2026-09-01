@@ -1,4 +1,7 @@
 /target/
+**/gen/rust/target/
+mise.toml
+.DS_Store
 /node_modules/
 /generated/
 **/gen/rust/target/
