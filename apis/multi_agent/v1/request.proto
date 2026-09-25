@@ -574,19 +574,6 @@ message Request {
       // this bearer token instead of Warp's org-wide xAI API key.
       string grok_oauth_access_token = 8 [ (sensitive) = true ];
 
-      // Optional OpenAI/ChatGPT OAuth credentials from a connected ChatGPT (Codex)
-      // subscription. When set, the server's OpenAI harness authenticates against the
-      // ChatGPT Codex backend (chatgpt.com/backend-api/codex) with this bearer token
-      // and account id instead of Warp's org-wide OpenAI API key.
-      CodexOauthCredentials codex_oauth_credentials = 9;
-
-      message CodexOauthCredentials {
-        string access_token = 1 [ (sensitive) = true ];
-        // ChatGPT account id (JWT claim `chatgpt_account_id` from the id_token),
-        // sent by the server as the `chatgpt-account-id` header.
-        string chatgpt_account_id = 2;
-      }
-
       // The signed-in user's delegated ChatGPT access token (Sign in with
       // ChatGPT token sharing). Like `grok_oauth_access_token`, this is
       // user-provided inference: OpenAI requests are billed to the user's
@@ -602,6 +589,20 @@ message Request {
       bool skip_chatgpt_subscription = 10;
 
       // TODO(isaiah): Add Azure
+
+      // Optional OpenAI/ChatGPT OAuth credentials from a connected ChatGPT (Codex)
+      // subscription. When set, the server's OpenAI harness authenticates against the
+      // ChatGPT Codex backend (chatgpt.com/backend-api/codex) with this bearer token
+      // and account id instead of Warp's org-wide OpenAI API key.
+      CodexOauthCredentials codex_oauth_credentials = 11;
+
+      message CodexOauthCredentials {
+        string access_token = 1 [ (sensitive) = true ];
+        // ChatGPT account id (JWT claim `chatgpt_account_id` from the id_token),
+        // sent by the server as the `chatgpt-account-id` header.
+        string chatgpt_account_id = 2;
+      }
+
     }
 
     message CustomModelProviders {
